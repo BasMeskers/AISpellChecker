@@ -22,6 +22,34 @@ public class SpellCorrector {
         
         /** CODE TO BE ADDED **/
         
+        //Debug prints
+//        for (String word : words){
+//        	System.out.println(word + ":");
+//        	Map<String, Double> candidates = getCandidateWords(word);
+//        	System.out.println(candidates);
+//        }
+        
+        /*
+         * loops over all words in the sentence and checks for words not in the vocabulary
+         * If it finds such a word, the most likely typo is taken and the new word is inserted in the sentence.
+         * TODO improve this.
+         */
+        for (String word : words){
+        	if (!cr.inVocabulary(word)){
+        		Map<String, Double> candidates = getCandidateWords(word);
+        		String bestCandidate = "";
+        		double bestWeight = -1;
+        		for (Map.Entry<String, Double> entry : candidates.entrySet()){
+        			if (entry.getValue() > bestWeight){
+        				bestWeight = entry.getValue();
+        				bestCandidate = entry.getKey();
+        			}
+        		}
+        		word = bestCandidate;
+        	}
+        	finalSuggestion += word + " ";
+        }
+        
         return finalSuggestion.trim();
     }    
       

@@ -21,8 +21,18 @@ public class WordGenerator {
      * @return conditional probability Pr(t|c)
      */
     private double probability(String t, String c) {
-        // ToDo SpellChecker Assignment: Implement this!
-        return 1.0;
+        // TODO SpellChecker Assignment: Implement this!
+    	
+    	//The total count an error has resulted in t
+    	double totalCount = cmr.getTotalCount(t);
+    	
+    	//The count of error t when c was meant
+    	int confusionCount = cmr.getConfusionCount(t, c);
+    	
+    	//the chance of error t actually had to be c.
+    	double result = confusionCount / totalCount;
+    	
+        return result;
     }
     
     protected void addInsertions(HashMap<String, Double> result, String typo) {

@@ -34,6 +34,17 @@ public class ConfusionMatrixReader {
         return confusionMatrix.getOrDefault(error+"|"+correct,0);
     }
     
+    /**
+     * Returns the total summed count of all pairs involving error t.
+     * e.g. t|x, where x is a possible correction string.
+     * 
+     * @param error
+     * @return
+     */
+    public int getTotalCount(String error){
+    	return countMatrix.getOrDefault(error, 0);
+    }
+    
     private void readConfusionMatrix() 
             throws FileNotFoundException, IOException
     {
